@@ -31,7 +31,9 @@ const actions = {
   getAll(context, payload) {
     return new Promise((resolve, reject) => {
       this.$axios
-        .$get('https://imdb-api.com/en/API/MostPopularMovies/k_52gc68ar')
+        .$get(
+          `${this.$config.myPublicVariable}MostPopularMovies/${this.$config.myPublicToken}`
+        )
         .then((response) => {
           context.commit('SET_DATA', response.items)
           context.commit('SET_ALL_LOADING', false)
@@ -45,7 +47,9 @@ const actions = {
   search(context, payload) {
     return new Promise((resolve, reject) => {
       this.$axios
-        .$get(`https://imdb-api.com/en/API/SearchTitle/k_52gc68ar/${payload}`)
+        .$get(
+          `${this.$config.myPublicVariable}SearchTitle/${this.$config.myPublicToken}/${payload}`
+        )
         .then((response) => {
           context.commit('SET_DATA', response.results)
           context.commit('SET_ALL_LOADING', false)
@@ -58,11 +62,11 @@ const actions = {
   },
   getDetails(context, payload) {
     return new Promise((resolve, reject) => {
-      console.log('masuk')
       this.$axios
-        .$get(`https://imdb-api.com/en/API/Trailer/k_52gc68ar/${payload}`)
+        .$get(
+          `${this.$config.myPublicVariable}Trailer/${this.$config.myPublicToken}/${payload}`
+        )
         .then((result) => {
-          console.log('udah')
           context.commit('SET_DETAILS', result)
           context.commit('SET_ALL_LOADING', false)
           resolve(result)

@@ -11,6 +11,10 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
+  publicRuntimeConfig: {
+    myPublicVariable: process.env.API_URL_DEV,
+    myPublicToken: process.env.TOKEN_URL,
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
